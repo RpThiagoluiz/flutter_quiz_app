@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
 //State pertence ao MyApp
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
   var questionIndex = 0;
-  var questions = ['What is the name of...', 'What is the your god '];
+  var questions = [
+    'What is the name of...',
+    'What is the your god',
+    "Flutter god"
+  ];
 
   void onPressAnswer(title) {
     //setState igual react força um rerun
     setState(() {
-      if (questionIndex <= questions.length) {
+      if (questionIndex < questions.length - 1) {
         questionIndex += 1;
+      } else {
+        questionIndex = 0;
       }
     });
 
@@ -34,18 +41,27 @@ class MyAppState extends State<MyApp> {
           title: Text('My\'s First App'),
         ),
         body: Column(children: [
-          Text(questions[questionIndex]),
+          Question(questions[questionIndex]),
           ElevatedButton(
             child: Text('Answer 1'),
             onPressed: () => onPressAnswer('Answer 1'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.pink),
+            ),
           ),
           ElevatedButton(
             child: Text('Answer 2'),
             onPressed: () => onPressAnswer('Answer 2'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.pink),
+            ),
           ),
           ElevatedButton(
             child: Text('Answer 3'),
             onPressed: () => onPressAnswer('Answer 3'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.pink),
+            ),
           )
         ]),
       ),
